@@ -1,4 +1,3 @@
-// import Logo from "./Logo";
 import Menu from "./Menu";
 import MenuOverlay from "./MenuOverlay";
 import Aside from "./Aside";
@@ -6,7 +5,7 @@ import styled from "styled-components";
 import { useState, useCallback } from "react";
 
 const Navbar = () => {
-  const [isOverlayOpened, setOverlayOpened] = useState(true);
+  const [isOverlayOpened, setOverlayOpened] = useState(false);
   const onOpenOverlay = useCallback(() => setOverlayOpened(true), []);
   const onCloseOverlay = useCallback(() => setOverlayOpened(false), []);
 
@@ -21,14 +20,15 @@ const Navbar = () => {
         />
         <Aside />
       </NavBox>
-      <OverLay opened={isOverlayOpened}>
-        <MenuOverlay onCloseOverlay={onCloseOverlay} />
-      </OverLay>
+      <MenuOverlay opened={isOverlayOpened} onCloseOverlay={onCloseOverlay} />
     </Container>
   );
 };
 
-const Container = styled.div``;
+const Container = styled.div`
+  width: 100%;
+  background-color: white;
+`;
 
 const Logo = styled.div`
   font-size: 22px;
@@ -44,15 +44,13 @@ const NavBox = styled.nav`
   //Mobile
   @media screen and (max-width: 767px) {
     width: 100%;
-    padding: 4px 8px;
-    height: 54px;
+    height: 50px;
   }
 
   //Tablet
   @media (min-width: 768px) and (max-width: 1199px) {
     width: 95%;
-    padding: 4px 8px;
-    height: 52px;
+    height: 50px;
   }
 
   //PC
@@ -66,12 +64,7 @@ const NavBox = styled.nav`
   align-items: center;
   margin: 0 auto;
   background-color: white;
-`;
-
-const OverLay = styled.div`
-  opacity: ${(props) => (props.opened ? `100%` : `0`)};
-  height: ${(props) => (props.opened ? `1024px` : `0px`)};
-  transition: 0.9s;
+  z-index: 200;
 `;
 
 export default Navbar;

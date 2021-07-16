@@ -1,19 +1,17 @@
 import styled from "styled-components";
 import { useEffect, useRef } from "react";
-import MenuList from "../data/MenuList_org.json";
+import MenuList from "../data/MenuList.json";
 import { ArrowIosForwardOutline } from "@styled-icons/evaicons-outline";
 
-const MenuOverlay = ({ isOverlayOpened, onCloseOverlay }) => {
+const MenuOverlay = ({ opened, onCloseOverlay }) => {
   const ref = useRef();
-
-  useEffect(() => {}, []);
 
   useEffect(() => {
     ref.current.addEventListener("mouseleave", onCloseOverlay);
   }, [ref]);
 
   return (
-    <Container ref={ref}>
+    <Container opened={opened} ref={ref}>
       <MenusContainer>
         {MenuList.map(({ title, subtitles, href }, i) => {
           return i < 6 ? (
@@ -58,19 +56,20 @@ const Container = styled.div`
   top: 50px;
   position: fixed;
   width: 100%;
-  height: 80vh;
+  opacity: ${(props) => (props.opened ? `100%` : `0`)};
+  height: ${(props) => (props.opened ? `70vh` : `0vh`)};
+  transition: 0.4s;
   background-color: white;
-  box-shadow: rgba(0, 0, 0, 0.5) 0 0 0 9999px;
   z-index: 100;
-  padding-top: 50px;
 `;
 
 const MenusContainer = styled.div`
-  width: 90%;
+  width: 95%;
   height: 100%;
   display: flex;
   text-align: left;
   margin: 0 auto;
+  padding-top: 20px;
 `;
 
 const MenuBox = styled.a`
@@ -95,6 +94,7 @@ const Title = styled.h2`
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
+  cursor: pointer;
 `;
 
 const Subtitle = styled.h3`
@@ -105,6 +105,7 @@ const Subtitle = styled.h3`
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
+  cursor: pointer;
 `;
 
 const ArrowIcon = styled(ArrowIosForwardOutline)`
@@ -113,7 +114,6 @@ const ArrowIcon = styled(ArrowIosForwardOutline)`
 `;
 
 const MenuETC = styled.div`
-  /* margin-bottom: 12px; */
   width: 100%;
 `;
 
