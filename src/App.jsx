@@ -11,7 +11,7 @@ const App = () => {
         <StyledNavbar>
           <Navbar />
         </StyledNavbar>
-        <Test />
+        <SampleImg />
       </Container>
     </>
   );
@@ -34,10 +34,9 @@ const StyledNavbar = styled.div`
   margin: 0 auto;
 `;
 
-const Test = styled.div`
+const SampleImg = styled.img`
+  src: "https://static.wanted.co.kr/images/events/1389/dd9ef0b8.png";
   width: 100%;
-  height: 5000px;
-  background-color: gray;
 `;
 
 export default App;

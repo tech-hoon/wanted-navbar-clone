@@ -7,7 +7,6 @@ const Menu = ({ isOverlayOpened, onOpenOverlay, onCloseOverlay }) => {
 
   useEffect(() => {
     buttonRef.current.addEventListener("mouseenter", onOpenOverlay);
-    // buttonRef.current.addEventListener("mouseleave", onCloseOverlay);
   }, [buttonRef]);
 
   return (
@@ -30,7 +29,10 @@ const Container = styled.ul`
 `;
 
 const List = styled.li`
-  padding: 20px 0;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 600;
+  cursor: pointer;
 
   &:nth-child(2) {
     color: red;
@@ -38,15 +40,20 @@ const List = styled.li`
 
   //Mobile
   @media screen and (max-width: 767px) {
-    &:nth-child(3),
+    padding: 0px 10px;
+
     &:nth-child(4),
-    &:nth-child(5) {
+    &:nth-child(5),
+    &:nth-child(6),
+    &:nth-child(7) {
       display: none;
     }
   }
 
   //Tablet
   @media (min-width: 768px) and (max-width: 1199px) {
+    padding: 0px 8px;
+
     &:nth-child(1) {
       display: none;
     }
@@ -54,6 +61,8 @@ const List = styled.li`
 
   //PC
   @media (min-width: 1200px) {
+    padding: 0px 20px;
+
     &:nth-child(1) {
       display: none;
     }
