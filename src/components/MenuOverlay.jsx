@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { useEffect, useRef } from "react";
-import MenuList from "../data/MenuList.json";
+import MenuList from "../assets/MenuList.json";
 import { ArrowIosForwardOutline } from "@styled-icons/evaicons-outline";
 
 const MenuOverlay = ({ opened, onCloseOverlay }) => {
@@ -14,7 +14,7 @@ const MenuOverlay = ({ opened, onCloseOverlay }) => {
     <Container opened={opened} ref={ref}>
       <MenusContainer>
         {MenuList.map(({ title, subtitles, href }, i) => {
-          return i < 6 ? (
+          return i < MenuList.length - 1 ? (
             <MenuBox key={i}>
               <TitleBox>
                 <Title>{title}</Title>
